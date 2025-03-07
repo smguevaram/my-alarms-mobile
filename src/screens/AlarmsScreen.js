@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, ScrollView, StyleSheet } from "react-native";
-import { Card, Text, Button, Avatar, Appbar, Divider } from "react-native-paper";
+import { Card, Text, Button, Avatar, Appbar, Dialog, Portal } from "react-native-paper";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function AlarmsScreen({ navigation }) {
-  const alarms = [
+  const [visible, setVisible] = useState(false);
+  const [selectedAlarm, setSelectedAlarm] = useState(null);
+  const [alarms, setAlarms] = useState([
     { id: "1", name: "Acetaminofén 500 mg", time: "12:00 PM", type: "Alarma" },
-  ];
+  ]);
 
   const reminders = [
     { id: "2", name: "Medicina General", time: "Cita Médico 10/02/2025", type: "Recordatorio" },
   ];
+
+  const showDialog = (alarm) => {
+    setSelectedAlarm(alarm);
+    setVisible(true);
+  };
+
+  const hideDialog = () => {
+    setVisible(false);
+    setSelectedAlarm(null);
+  };
+
+  const deleteAlarm = () => {
+    setAlarms(alarms.filter(alarm => alarm.id !== selectedAlarm?.id));
+    hideDialog();
+  };
 
   return (
     <View style={styles.container}>
@@ -32,13 +49,13 @@ export default function AlarmsScreen({ navigation }) {
                 <Text variant="bodySmall">Medicamento {alarm.time}</Text>
               </View>
             </Card.Content>
-            <Divider />
             <Card.Actions style={styles.buttonContainer}>
               <Button
                 mode="contained-tonal"
                 onPress={() => navigation.navigate("AlarmDetail", { alarm })}
                 style={[styles.actionButton, styles.viewButton]}
-                icon={() => <MaterialCommunityIcons name="eye" size={16} color="white" />}
+                icon={() => <MaterialCommunityIcons name="magnify" size={16} color="white" />}
+                labelStyle={{ color: "white" }}
               >
                 Ver Más
               </Button>
@@ -52,9 +69,10 @@ export default function AlarmsScreen({ navigation }) {
               </Button>
               <Button
                 mode="contained-tonal"
-                onPress={() => console.log("Eliminar")}
+                onPress={() => showDialog(alarm)}
                 style={[styles.actionButton, styles.deleteButton]}
-                icon={() => <MaterialCommunityIcons name="delete" size={16} color="white" />}
+                icon={() => <MaterialCommunityIcons name="trash-can-outline" size={16} color="white" />}
+                labelStyle={{ color: "white" }}
               >
                 Borrar
               </Button>
@@ -73,13 +91,13 @@ export default function AlarmsScreen({ navigation }) {
                 <Text variant="bodySmall">{reminder.time}</Text>
               </View>
             </Card.Content>
-            <Divider />
             <Card.Actions style={styles.buttonContainer}>
               <Button
                 mode="contained-tonal"
                 onPress={() => console.log("Ver Más")}
                 style={[styles.actionButton, styles.viewButton]}
-                icon={() => <MaterialCommunityIcons name="eye" size={16} color="white" />}
+                icon={() => <MaterialCommunityIcons name="magnify" size={16} color="white" />}
+                labelStyle={{ color: "white" }}
               >
                 Ver Más
               </Button>
@@ -95,7 +113,8 @@ export default function AlarmsScreen({ navigation }) {
                 mode="contained-tonal"
                 onPress={() => console.log("Eliminar")}
                 style={[styles.actionButton, styles.deleteButton]}
-                icon={() => <MaterialCommunityIcons name="delete" size={16} color="white" />}
+                icon={() => <MaterialCommunityIcons name="trash-can-outline" size={16} color="white" />}
+                labelStyle={{ color: "white" }}
               >
                 Borrar
               </Button>
@@ -103,6 +122,18 @@ export default function AlarmsScreen({ navigation }) {
           </Card>
         ))}
       </ScrollView>
+      <Portal>
+        <Dialog visible={visible} onDismiss={hideDialog}>
+          <Dialog.Title>Eliminar alarma</Dialog.Title>
+          <Dialog.Content>
+            <Text>¿Estás seguro de eliminar la alarma {selectedAlarm?.name}?</Text>
+          </Dialog.Content>
+          <Dialog.Actions>
+            <Button onPress={hideDialog}>No</Button>
+            <Button onPress={deleteAlarm}>Sí</Button>
+          </Dialog.Actions>
+        </Dialog>
+      </Portal>
     </View>
   );
 }

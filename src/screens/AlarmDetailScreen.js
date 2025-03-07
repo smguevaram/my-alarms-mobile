@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Text, Button, Avatar, Appbar } from "react-native-paper";
+import { Text, Button, Avatar, Appbar, BottomNavigation } from "react-native-paper";
 
 export default function AlarmDetailScreen({ route, navigation }) {
   const { alarm } = route.params;
@@ -17,21 +17,21 @@ export default function AlarmDetailScreen({ route, navigation }) {
       <View style={styles.content}>
         {/* Avatar y título */}
         <View style={styles.avatarContainer}>
-          <Avatar.Text size={50} label="A" />
+          <Avatar.Text size={50} label={alarm.name.charAt(0)} style={{ backgroundColor: '#D0D0D0' }}/>
           <View style={styles.textContainer}>
-            <Text variant="titleMedium">{alarm.name}</Text>
-            <Text variant="bodySmall">Medicamento</Text>
+            <Text style={styles.title}>{alarm.name}</Text>
+            <Text style={styles.subtitle}>Medicamento</Text>
           </View>
         </View>
 
-        {/* Información de la alarma */}
         <Text style={styles.infoText}>Hora: <Text style={styles.boldText}>{alarm.time}</Text></Text>
         <Text style={styles.infoText}>Periodicidad: <Text style={styles.boldText}>{alarm.frequency}</Text></Text>
 
-        {/* Botón de volver */}
-        <Button mode="outlined" onPress={() => navigation.goBack()} style={styles.backButton}>
-          Volver
-        </Button>
+        <View style={styles.buttonContainer}>
+          <Button mode="outlined" onPress={() => navigation.goBack()} style={styles.backButton} labelStyle={{ color: "black" }} >
+            Volver
+          </Button>
+        </View>
       </View>
     </View>
   );
@@ -40,11 +40,12 @@ export default function AlarmDetailScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#F5F5F5",
   },
   content: {
+    flex: 1,
     padding: 20,
-    alignItems: "center",
+    alignItems: "left",
   },
   avatarContainer: {
     flexDirection: "row",
@@ -54,6 +55,14 @@ const styles = StyleSheet.create({
   textContainer: {
     marginLeft: 10,
   },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "gray",
+  },
   infoText: {
     fontSize: 16,
     marginVertical: 5,
@@ -61,7 +70,13 @@ const styles = StyleSheet.create({
   boldText: {
     fontWeight: "bold",
   },
-  backButton: {
+  buttonContainer: {
+    alignItems: "center",
     marginTop: 20,
+  },
+  backButton: {
+    borderColor: "black",
+    borderWidth: 1,
+    width: '30%',
   },
 });

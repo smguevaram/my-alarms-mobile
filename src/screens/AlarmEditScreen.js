@@ -19,10 +19,10 @@ export default function AlarmEditScreen({ navigation }) {
       <View style={styles.content}>
         {/* Avatar */}
         <View style={styles.avatarContainer}>
-          <Avatar.Text size={50} label="A" />
+          <Avatar.Text size={50} label="A" style={{ backgroundColor: '#D0D0D0' }} />
           <View style={styles.textContainer}>
-            <Text variant="titleMedium">{name}</Text>
-            <Text variant="bodySmall">Medicamento</Text>
+            <Text style={styles.title}>{name}</Text>
+            <Text style={styles.subtitle}>Medicamento</Text>
           </View>
         </View>
 
@@ -31,30 +31,27 @@ export default function AlarmEditScreen({ navigation }) {
           label="Nombre"
           value={name}
           onChangeText={setName}
-          mode="outlined"
           style={styles.input}
         />
         <TextInput
           label="Hora"
           value={time}
           onChangeText={setTime}
-          mode="outlined"
           style={styles.input}
         />
         <TextInput
           label="Periodicidad"
           value={frequency}
           onChangeText={setFrequency}
-          mode="outlined"
           style={styles.input}
         />
 
         {/* Botones */}
         <View style={styles.buttonContainer}>
-          <Button mode="outlined" onPress={() => navigation.goBack()}>
+          <Button mode="outlined" onPress={() => navigation.goBack()} style={styles.backButton} labelStyle={{ color: "black" }}>
             Volver
           </Button>
-          <Button mode="contained" onPress={() => console.log("Alarma actualizada")} style={styles.updateButton}>
+          <Button mode="contained" onPress={() => navigation.goBack()} style={styles.updateButton}>
             Actualizar
           </Button>
         </View>
@@ -66,9 +63,10 @@ export default function AlarmEditScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#F5F5F5",
   },
   content: {
+    flex: 1,
     padding: 20,
   },
   avatarContainer: {
@@ -79,15 +77,32 @@ const styles = StyleSheet.create({
   textContainer: {
     marginLeft: 10,
   },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "gray",
+  },
   input: {
     marginBottom: 15,
+    backgroundColor: "#FFFFFF",
   },
   buttonContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 20,
+  },
+  backButton: {
+    borderColor: "black",
+    borderWidth: 1,
+    width: '40%',
+    marginRight: 10,
   },
   updateButton: {
     backgroundColor: "#007BFF",
+    width: '40%',
   },
 });
