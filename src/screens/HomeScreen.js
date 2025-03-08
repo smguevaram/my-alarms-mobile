@@ -5,25 +5,25 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function HomeScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-      {/* Título */}
-      <Text variant="headlineLarge" style={styles.title}>
-        My Alarms
-      </Text>
+      <View style={styles.container}>
+        {/* Título */}
+        <Text variant="headlineLarge" style={styles.title}>
+          My Alarms
+        </Text>
 
-      {/* Imagen de bienvenida */}
-      <Image source={require("../../assets/home.png")} style={styles.image} />
+        {/* Imagen de bienvenida */}
+        <Image source={require("../../assets/home.png")} style={styles.image} />
 
-      {/* Botón de Google */}
-      <Button
-        mode="contained"
-        onPress={() => navigation.navigate("PrivacyPolicy")}
-        style={styles.googleButton}
-        icon={() => <MaterialCommunityIcons name="google" size={20} color="white" />}
-      >
-        Iniciar con Google
-      </Button>
-    </View>
+        {/* Botón de Google */}
+        <Button
+            mode="contained"
+            onPress={() => navigation.navigate("PrivacyPolicy")}
+            style={styles.googleButton}
+            icon={() => <MaterialCommunityIcons name="google" size={20} color="white" />}
+        >
+          Iniciar con Google
+        </Button>
+      </View>
   );
 }
 
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   googleButton: {
-    backgroundColor: "#007AFF", // Azul de Google
+    backgroundColor: "#007AFF",
     borderRadius: 20,
     paddingVertical: 5,
     paddingHorizontal: 20,

@@ -8,33 +8,33 @@ export default function PrivacyPolicyScreen({ navigation }) {
   const hideDialog = () => setVisible(false);
 
   return (
-    <View style={styles.container}>
-      <Portal>
-        <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
-          {/* Ícono en la parte superior */}
-          <IconButton icon="file-document-outline" size={30} style={styles.icon} />
-          
-          <Dialog.Title style={styles.title}>Políticas de privacidad</Dialog.Title>
+      <View style={styles.container}>
+        <Portal>
+          <Dialog visible={visible} onDismiss={hideDialog} style={styles.dialog}>
+            {/* Ícono en la parte superior */}
+            <IconButton icon="file-document-outline" size={30} style={styles.icon} />
 
-          <Dialog.Content>
-            <Text style={styles.contentText}>
-              Al hacer clic en <Text style={styles.boldText}>"Permitir"</Text>, confirmas que
-              has leído y aceptas nuestra Política de Privacidad, donde protegemos tu
-              información y usamos datos solo para mejorar tu experiencia en <Text style={styles.boldText}>My Alarms</Text>.
-            </Text>
-          </Dialog.Content>
+            <Dialog.Title style={styles.title}>Políticas de privacidad</Dialog.Title>
 
-          <Dialog.Actions style={styles.actions}>
-            <Button textColor="#007AFF" onPress={() => { hideDialog(); navigation.navigate("MainTabs"); }}>
-              Permitir
-            </Button>
-            <Button textColor="black" onPress={() => { hideDialog(); navigation.navigate("Home"); }}>
-              No Permitir
-            </Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-    </View>
+            <Dialog.Content>
+              <Text style={styles.contentText}>
+                Al hacer clic en <Text style={styles.boldText}>"Permitir"</Text>, confirmas que
+                has leído y aceptas nuestra Política de Privacidad, donde protegemos tu
+                información y usamos datos solo para mejorar tu experiencia en <Text style={styles.boldText}>My Alarms</Text>.
+              </Text>
+            </Dialog.Content>
+
+            <Dialog.Actions style={styles.actions}>
+              <Button textColor="#007AFF" onPress={() => { hideDialog(); navigation.navigate("MainTabs"); }}>
+                Permitir
+              </Button>
+              <Button textColor="black" onPress={() => { hideDialog(); navigation.navigate("Home"); }}>
+                No Permitir
+              </Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+      </View>
   );
 }
 
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   dialog: {
-    borderRadius: 20, // Bordes redondeados del diálogo
+    borderRadius: 20,
     backgroundColor: 'white'
   },
   icon: {

@@ -2,8 +2,8 @@ import React from "react";
 import {StyleSheet, View} from "react-native";
 import {Button, Dialog, Portal, Text} from "react-native-paper";
 
-export default function AlarmDeleteScreen({ route, navigation }) {
-    const {alarm} = route.params || {};
+export default function ReminderDeleteScreen({ route, navigation }) {
+    const {reminder} = route.params || {};
     const [visible, setVisible] = React.useState(true);
 
     const hideDialog = () => {
@@ -12,7 +12,7 @@ export default function AlarmDeleteScreen({ route, navigation }) {
     };
 
     const handleDelete = () => {
-        console.log("Eliminar alarma:", alarm?.id);
+        console.log("Eliminar recordatorio:", reminder?.id);
         hideDialog();
     };
 
@@ -20,9 +20,9 @@ export default function AlarmDeleteScreen({ route, navigation }) {
         <View style={styles.container}>
             <Portal>
                 <Dialog visible={visible} onDismiss={hideDialog}>
-                    <Dialog.Title>Eliminar alarma</Dialog.Title>
+                    <Dialog.Title>Eliminar recordatorio</Dialog.Title>
                     <Dialog.Content>
-                        <Text>¿Estás seguro de eliminar la alarma {alarm?.name}?</Text>
+                        <Text>¿Estás seguro de eliminar el recordatorio de {reminder?.name}?</Text>
                     </Dialog.Content>
                     <Dialog.Actions>
                         <Button onPress={hideDialog}>No</Button>

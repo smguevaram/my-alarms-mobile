@@ -8,55 +8,55 @@ export default function AlarmEditScreen({ navigation }) {
   const [frequency, setFrequency] = useState("Cada 8 horas");
 
   return (
-    <View style={styles.container}>
-      {/* Barra de navegación superior */}
-      <Appbar.Header>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="My Alarms" />
-      </Appbar.Header>
+      <View style={styles.container}>
+        {/* Barra de navegación superior */}
+        <Appbar.Header>
+          <Appbar.BackAction onPress={() => navigation.goBack()} />
+          <Appbar.Content title="My Alarms" />
+        </Appbar.Header>
 
-      {/* Contenido de la pantalla */}
-      <View style={styles.content}>
-        {/* Avatar */}
-        <View style={styles.avatarContainer}>
-          <Avatar.Text size={50} label="A" style={{ backgroundColor: '#D0D0D0' }} />
-          <View style={styles.textContainer}>
-            <Text style={styles.title}>{name}</Text>
-            <Text style={styles.subtitle}>Medicamento</Text>
+        {/* Contenido de la pantalla */}
+        <View style={styles.content}>
+          {/* Avatar */}
+          <View style={styles.avatarContainer}>
+            <Avatar.Text size={50} label="A" style={{ backgroundColor: '#D0D0D0' }} />
+            <View style={styles.textContainer}>
+              <Text style={styles.title}>{name}</Text>
+              <Text style={styles.subtitle}>Medicamento</Text>
+            </View>
+          </View>
+
+          {/* Campos de edición */}
+          <TextInput
+              label="Nombre"
+              value={name}
+              onChangeText={setName}
+              style={styles.input}
+          />
+          <TextInput
+              label="Hora"
+              value={time}
+              onChangeText={setTime}
+              style={styles.input}
+          />
+          <TextInput
+              label="Periodicidad"
+              value={frequency}
+              onChangeText={setFrequency}
+              style={styles.input}
+          />
+
+          {/* Botones */}
+          <View style={styles.buttonContainer}>
+            <Button mode="outlined" onPress={() => navigation.goBack()} style={styles.backButton} labelStyle={{ color: "black" }}>
+              Volver
+            </Button>
+            <Button mode="contained" onPress={() => navigation.goBack()} style={styles.updateButton}>
+              Actualizar
+            </Button>
           </View>
         </View>
-
-        {/* Campos de edición */}
-        <TextInput
-          label="Nombre"
-          value={name}
-          onChangeText={setName}
-          style={styles.input}
-        />
-        <TextInput
-          label="Hora"
-          value={time}
-          onChangeText={setTime}
-          style={styles.input}
-        />
-        <TextInput
-          label="Periodicidad"
-          value={frequency}
-          onChangeText={setFrequency}
-          style={styles.input}
-        />
-
-        {/* Botones */}
-        <View style={styles.buttonContainer}>
-          <Button mode="outlined" onPress={() => navigation.goBack()} style={styles.backButton} labelStyle={{ color: "black" }}>
-            Volver
-          </Button>
-          <Button mode="contained" onPress={() => navigation.goBack()} style={styles.updateButton}>
-            Actualizar
-          </Button>
-        </View>
       </View>
-    </View>
   );
 }
 
