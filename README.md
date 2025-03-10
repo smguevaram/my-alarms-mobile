@@ -49,3 +49,8 @@ Esto abrirá una ventana en tu navegador con un código QR o se verá en la cons
 - **Expo**
 - **React Native Paper** (Componentes UI)
 - **React Navigation** (Navegación entre pantallas)
+
+## Preview iOS
+
+https://github.com/user-attachments/assets/66578790-4541-44e8-9806-31c0cc3e6080
+
